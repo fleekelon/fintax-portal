@@ -1,0 +1,290 @@
+[
+  {
+    "id": "ft-01",
+    "src": "/media/tiles/ft_01.webp",
+    "title": "11 通道离线雷达",
+    "tag": "dsh-fintax"
+  },
+  {
+    "id": "ft-02",
+    "src": "/media/tiles/ft_02.webp",
+    "title": "四层口径全景 02A",
+    "tag": "IMA V2.4.1"
+  },
+  {
+    "id": "ft-03",
+    "src": "/media/tiles/ft_03.webp",
+    "title": "海关双能 X 光",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-04",
+    "src": "/media/tiles/ft_04.webp",
+    "title": "Braun 精密仪表 UI",
+    "tag": "界面设计"
+  },
+  {
+    "id": "ft-05",
+    "src": "/media/tiles/ft_05.webp",
+    "title": "东方水墨·远航",
+    "tag": "IMA 视觉"
+  },
+  {
+    "id": "ft-06",
+    "src": "/media/tiles/ft_06.webp",
+    "title": "沉金电路板审计",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-07",
+    "src": "/media/tiles/ft_07.webp",
+    "title": "三段核对单封面",
+    "tag": "实战卡片"
+  },
+  {
+    "id": "ft-08",
+    "src": "/media/tiles/ft_08.webp",
+    "title": "财政部 2026#2 原件",
+    "tag": "官源铁证"
+  },
+  {
+    "id": "ft-09",
+    "src": "/media/tiles/ft_09.webp",
+    "title": "10 大确定性算税引擎",
+    "tag": "dsh-fintax"
+  },
+  {
+    "id": "ft-10",
+    "src": "/media/tiles/ft_10.webp",
+    "title": "光学灯箱胶片",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-11",
+    "src": "/media/tiles/ft_11.webp",
+    "title": "出口退税判断树 25A",
+    "tag": "IMA V2.4.1"
+  },
+  {
+    "id": "ft-12",
+    "src": "/media/tiles/ft_12.webp",
+    "title": "税务卷宗暗室",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-13",
+    "src": "/media/tiles/ft_13.webp",
+    "title": "账单换乘概念",
+    "tag": "界面设计"
+  },
+  {
+    "id": "ft-14",
+    "src": "/media/tiles/ft_14.webp",
+    "title": "精密机械表芯算税",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-15",
+    "src": "/media/tiles/ft_15.webp",
+    "title": "三段资金链拆解",
+    "tag": "实战卡片"
+  },
+  {
+    "id": "ft-16",
+    "src": "/media/tiles/ft_16.webp",
+    "title": "跨境蓝图雷达",
+    "tag": "蓝图视效"
+  },
+  {
+    "id": "ft-17",
+    "src": "/media/tiles/ft_17.webp",
+    "title": "IMA 图形化绑定台",
+    "tag": "dsh-fintax"
+  },
+  {
+    "id": "ft-18",
+    "src": "/media/tiles/ft_18.webp",
+    "title": "东方水墨·暗礁",
+    "tag": "IMA 视觉"
+  },
+  {
+    "id": "ft-19",
+    "src": "/media/tiles/ft_19.webp",
+    "title": "氰版蓝图架构",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-20",
+    "src": "/media/tiles/ft_20.webp",
+    "title": "暗黑财经终端",
+    "tag": "界面设计"
+  },
+  {
+    "id": "ft-21",
+    "src": "/media/tiles/ft_21.webp",
+    "title": "退运业务流程 17C",
+    "tag": "IMA V2.4.1"
+  },
+  {
+    "id": "ft-22",
+    "src": "/media/tiles/ft_22.webp",
+    "title": "X 光清关查验",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-23",
+    "src": "/media/tiles/ft_23.webp",
+    "title": "83A 消费税底稿",
+    "tag": "官源铁证"
+  },
+  {
+    "id": "ft-24",
+    "src": "/media/tiles/ft_24.webp",
+    "title": "3D 财税桌面工坊",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-25",
+    "src": "/media/tiles/ft_25.webp",
+    "title": "DSH 实机算税对话",
+    "tag": "dsh-fintax"
+  },
+  {
+    "id": "ft-26",
+    "src": "/media/tiles/ft_26.webp",
+    "title": "朱笔校样室概念",
+    "tag": "界面设计"
+  },
+  {
+    "id": "ft-27",
+    "src": "/media/tiles/ft_27.webp",
+    "title": "多通道电路路由",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-28",
+    "src": "/media/tiles/ft_28.webp",
+    "title": "P0/P1 财务派活清单",
+    "tag": "实战卡片"
+  },
+  {
+    "id": "ft-29",
+    "src": "/media/tiles/ft_29.webp",
+    "title": "历史更正四步决策 52A",
+    "tag": "IMA V2.4.1"
+  },
+  {
+    "id": "ft-30",
+    "src": "/media/tiles/ft_30.webp",
+    "title": "香港与9810双层架构",
+    "tag": "蓝图视效"
+  },
+  {
+    "id": "ft-31",
+    "src": "/media/tiles/ft_31.webp",
+    "title": "东方水墨·秩序",
+    "tag": "IMA 视觉"
+  },
+  {
+    "id": "ft-32",
+    "src": "/media/tiles/ft_32.webp",
+    "title": "证据链卷宗核查",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-33",
+    "src": "/media/tiles/ft_33.webp",
+    "title": "DSH 插件市场详情",
+    "tag": "dsh-fintax"
+  },
+  {
+    "id": "ft-34",
+    "src": "/media/tiles/ft_34.webp",
+    "title": "象牙白极简界面",
+    "tag": "界面设计"
+  },
+  {
+    "id": "ft-35",
+    "src": "/media/tiles/ft_35.webp",
+    "title": "BigInt 定点数齿轮",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-36",
+    "src": "/media/tiles/ft_36.webp",
+    "title": "灯箱税号逐码核对",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-37",
+    "src": "/media/tiles/ft_37.webp",
+    "title": "老板vs财务双视角",
+    "tag": "实战卡片"
+  },
+  {
+    "id": "ft-38",
+    "src": "/media/tiles/ft_38.webp",
+    "title": "低值包裹关税穿透",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-39",
+    "src": "/media/tiles/ft_39.webp",
+    "title": "财政部 2026#29 原件",
+    "tag": "官源铁证"
+  },
+  {
+    "id": "ft-40",
+    "src": "/media/tiles/ft_40.webp",
+    "title": "合规护城河堡垒",
+    "tag": "蓝图视效"
+  },
+  {
+    "id": "ft-41",
+    "src": "/media/tiles/ft_41.webp",
+    "title": "Bento 财税社论卡",
+    "tag": "界面设计"
+  },
+  {
+    "id": "ft-42",
+    "src": "/media/tiles/ft_42.webp",
+    "title": "东方水墨·天际",
+    "tag": "IMA 视觉"
+  },
+  {
+    "id": "ft-43",
+    "src": "/media/tiles/ft_43.webp",
+    "title": "芯片级算税内核",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-44",
+    "src": "/media/tiles/ft_44.webp",
+    "title": "透明套片口径叠加",
+    "tag": "界面设计"
+  },
+  {
+    "id": "ft-45",
+    "src": "/media/tiles/ft_45.webp",
+    "title": "十月账回测招募",
+    "tag": "实战卡片"
+  },
+  {
+    "id": "ft-46",
+    "src": "/media/tiles/ft_46.webp",
+    "title": "工程蓝图总览",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-47",
+    "src": "/media/tiles/ft_47.webp",
+    "title": "桌面端实时渲染",
+    "tag": "短片静帧"
+  },
+  {
+    "id": "ft-48",
+    "src": "/media/tiles/ft_48.webp",
+    "title": "225万稽查铁案拆解",
+    "tag": "案例封面"
+  }
+]

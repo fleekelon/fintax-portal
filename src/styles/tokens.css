@@ -1,0 +1,179 @@
+:root,
+[data-theme='light'] {
+  --bg: #f3f2ee;
+  --surface: #ffffff;
+  --surface-2: #eae8e2;
+  --strong: #111110;
+  --text: #272725;
+  --text2: #62605b;
+  --text3: #8c8982;
+  --line: rgba(17, 17, 16, 0.09);
+  --line2: rgba(17, 17, 16, 0.18);
+  --dot: rgba(17, 17, 16, 0.09);
+  --xh-line: rgba(17, 17, 16, 0.18);
+  --tag-bg: rgba(255, 255, 252, 0.9);
+  --tag-border: rgba(17, 17, 16, 0.11);
+  --tag-label: rgba(17, 17, 16, 0.5);
+  --tag-value: rgba(17, 17, 16, 0.9);
+  --accent: #e8481c;
+  --lcd: #6c8049;
+  --inv: #111110;
+  --on-inv: #faf9f6;
+  --glass-bg: linear-gradient(180deg, rgba(255, 255, 253, 0.94) 0%, rgba(235, 233, 226, 0.88) 100%);
+  --glass-track: rgba(255, 255, 252, 0.76);
+  --glass-border: rgba(17, 17, 16, 0.1);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.96), inset 0 -1px 0 rgba(0, 0, 0, 0.06);
+  --glass-shadow: 0 2px 12px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.05);
+  --lens-ring-shadow: 0 0 0 1px rgba(17, 17, 16, 0.07), 0 24px 64px rgba(0, 0, 0, 0.09);
+  --lens-inner-glow: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.9), transparent 55%);
+  --tick-dim: rgba(17, 17, 16, 0.17);
+  --tick-lit: rgba(17, 17, 16, 0.92);
+  --studio-bg: #111113;
+  --studio-panel: #17171a;
+  --studio-border: rgba(255, 255, 255, 0.09);
+}
+
+[data-theme='dark'] {
+  --bg: #0b0b0c;
+  --surface: #151517;
+  --surface-2: #1e1e21;
+  --strong: #fafafa;
+  --text: #d6d5d1;
+  --text2: #9d9b95;
+  --text3: #73716c;
+  --line: rgba(255, 255, 255, 0.09);
+  --line2: rgba(255, 255, 255, 0.18);
+  --dot: rgba(255, 255, 255, 0.08);
+  --xh-line: rgba(255, 255, 255, 0.18);
+  --tag-bg: rgba(20, 20, 22, 0.88);
+  --tag-border: rgba(255, 255, 255, 0.11);
+  --tag-label: rgba(255, 255, 255, 0.55);
+  --tag-value: rgba(255, 255, 255, 0.92);
+  --accent: #ff5426;
+  --lcd: #a3be72;
+  --inv: #fafafa;
+  --on-inv: #0b0b0c;
+  --glass-bg: linear-gradient(180deg, rgba(48, 48, 52, 0.88) 0%, rgba(18, 18, 20, 0.94) 100%);
+  --glass-track: rgba(16, 16, 18, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.52), 0 1px 2px rgba(0, 0, 0, 0.6);
+  --lens-ring-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 80px rgba(0, 0, 0, 0.74);
+  --lens-inner-glow: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.11), transparent 52%);
+  --tick-dim: rgba(255, 255, 255, 0.17);
+  --tick-lit: rgba(250, 250, 250, 0.94);
+  --studio-bg: #101012;
+  --studio-panel: #161619;
+  --studio-border: rgba(255, 255, 255, 0.09);
+}
+
+:root {
+  --f-ui: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  --f-disp: 'Inter Tight', 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --f-mono: 'Geist Mono', ui-monospace, Menlo, Consolas, monospace;
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--strong);
+  font-family: var(--f-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.35s var(--ease-spring), color 0.35s var(--ease-spring);
+}
+
+button,
+input,
+a {
+  font-family: inherit;
+  color: inherit;
+}
+
+.glass-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--glass-track);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translateZ(0);
+}
+
+.glass-seg {
+  border: 0;
+  background: transparent;
+  padding: 6px 13px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text2);
+  cursor: pointer;
+  transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.glass-seg:hover {
+  color: var(--strong);
+}
+
+.glass-seg.active {
+  color: var(--strong);
+  background: var(--glass-bg);
+  box-shadow: var(--glass-inset), var(--glass-shadow);
+}
+
+.glass-btn {
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--strong);
+  box-shadow: var(--glass-inset), var(--glass-shadow);
+  border-radius: 999px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: transform 0.25s var(--ease-spring), filter 0.2s ease;
+}
+
+.glass-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+.glass-btn.primary {
+  background: var(--inv);
+  color: var(--on-inv);
+  border-color: transparent;
+}
+
+.glass-icon-btn {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 50%;
+}
