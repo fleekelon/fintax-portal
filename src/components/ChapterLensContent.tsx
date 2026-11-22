@@ -171,7 +171,7 @@ export function ChapterLensContent({
     <div className="lens-widget-card">
       <div className="tier-grid">
         <div className="tier-col">
-          <strong>dsh-fintax {LINKS.pluginVersion}</strong>
+          <strong>dsh-fintax 开源插件</strong>
           <div>MIT 开源免费 · 11 通道离线对账 · 10 引擎 · 零推广月结核对单导出</div>
         </div>
         <div className="tier-col">
@@ -179,7 +179,7 @@ export function ChapterLensContent({
           <div>免会员可查 12 篇高频排雷问答 · 四层口径速查 · 风险应急入口</div>
         </div>
         <div className="tier-col highlight">
-          <strong>IMA 完整版 {LINKS.kbVersion}</strong>
+          <strong>IMA 完整版知识库</strong>
           <div>279 条内容 · 100 本零漂移联动 Excel（60,107 公式）· 362 税号原件</div>
         </div>
       </div>

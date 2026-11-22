@@ -4,3 +4,7 @@ dist/
 .DS_Store
 .env
 .env.*
+# Local Alibaba Cloud ops files (contain server IP/alias; keep out of public repo)
+AGENTS.md
+deploy.ps1
+verify.ps1

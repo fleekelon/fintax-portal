@@ -138,9 +138,9 @@ export const CircularDial = forwardRef<CircularDialHandle, CircularDialProps>(fu
           {stage === 'hero' && (
             <>
               <div className="hero-badge-row">
-                <span>dsh-fintax {LINKS.pluginVersion}</span>
+                <span>dsh-fintax</span>
                 <span>×</span>
-                <span>IMA KB {LINKS.kbVersion}</span>
+                <span>IMA 知识库</span>
               </div>
               <h1 className="hero-title">
                 {copy.heroPrefix}
@@ -257,7 +257,7 @@ export const CircularDial = forwardRef<CircularDialHandle, CircularDialProps>(fu
 
               <div className="cta-links-sub">
                 <a href={LINKS.github} target="_blank" rel="noreferrer">
-                  GitHub {LINKS.pluginVersion}
+                  GitHub
                 </a>
                 <a href={LINKS.npm} target="_blank" rel="noreferrer">
                   npm package

@@ -1,6 +1,6 @@
 import { Layers, QrCode, ShieldCheck, Sliders, Terminal } from 'lucide-react';
 import { forwardRef, useState } from 'react';
-import { LINKS, Lang, SITE_COPY, assetUrl } from '../config/fintaxConfig';
+import { Lang, SITE_COPY, assetUrl } from '../config/fintaxConfig';
 
 interface FinTaxWorkbenchProps {
   mounted: boolean;
@@ -31,7 +31,7 @@ const SCENES: WorkbenchScene[] = [
     metrics: [
       { k: '算账内核', v: 'BigInt 0.01 分' },
       { k: '5万行实测', v: '0.55 秒离线' },
-      { k: '质量门禁', v: '142 单测 / 16 红队' },
+      { k: '质量门禁', v: '143 单测 / 16 红队' },
     ],
   },
   {
@@ -59,9 +59,9 @@ const SCENES: WorkbenchScene[] = [
     group: 'plugin',
     metrics: [
       { k: '引擎数量', v: '10 引擎 / 6 工具 / 4 技能' },
-      { k: '依赖体积', v: '0 第三方依赖 · 181 kB' },
-      { k: '开源协议', v: 'MIT · 纯 ESM' },
-      { k: '当前版本', v: LINKS.pluginVersion },
+      { k: '运行时依赖', v: '0 第三方依赖 · 纯 ESM' },
+      { k: '开源协议', v: 'MIT · 持续迭代' },
+      { k: '安装渠道', v: 'GitHub / npm / DSH 市场' },
     ],
   },
   {
@@ -82,7 +82,7 @@ const SCENES: WorkbenchScene[] = [
     id: 'diag02a',
     title: 'IMA 四层口径全景图 02A',
     enTitle: 'IMA 4-Layer Bridge 02A',
-    tag: 'IMA V2.4.1',
+    tag: 'IMA 知识库',
     kind: 'image',
     img: assetUrl('/media/showcase/diagram-02a.webp'),
     group: 'ima',
@@ -90,14 +90,14 @@ const SCENES: WorkbenchScene[] = [
       { k: '全库规模', v: '7 模块 / 279 条内容' },
       { k: 'Excel 底稿', v: '100 本 / 482 工作表' },
       { k: '重算验证', v: '60,107 公式 / 0 漂移' },
-      { k: '政策基线', v: LINKS.kbBaseline },
+      { k: '更新机制', v: '10 项政策金丝雀追踪' },
     ],
   },
   {
     id: 'diag25a',
     title: '出口税收待遇判断树 25A',
     enTitle: 'Export Tax Decision Tree 25A',
-    tag: 'IMA V2.4.1',
+    tag: 'IMA 知识库',
     kind: 'image',
     img: assetUrl('/media/showcase/diagram-25a.webp'),
     group: 'ima',
@@ -154,8 +154,8 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#a1a1aa' }}>
             <ShieldCheck size={14} color="#a3be72" />
             <strong style={{ color: '#fafafa' }}>FINTAX</strong>
-            <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10.5px' }}>
-              {LINKS.pluginVersion} × {LINKS.kbVersion}
+            <span className="wb-topbar-sub" style={{ fontFamily: 'var(--f-mono)', fontSize: '10.5px' }}>
+              dsh-fintax × IMA
             </span>
           </div>
 
@@ -172,7 +172,7 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
             {[
               { id: 'sandbox', label: lang === 'zh' ? '合规沙盘' : 'Sandbox', idx: 0 },
               { id: 'plugin', label: 'dsh-fintax', idx: 1 },
-              { id: 'ima', label: 'IMA V2.4.1', idx: 4 },
+              { id: 'ima', label: lang === 'zh' ? 'IMA 知识库' : 'IMA KB', idx: 4 },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -233,7 +233,7 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
         </div>
 
         <div className="wb-main">
-          <aside className="wb-col">
+          <aside className="wb-col wb-col-left">
             <div style={{ fontSize: '10.5px', color: '#71717a', marginBottom: '8px', fontWeight: 600 }}>
               SCENES / 实景视图
             </div>
@@ -313,8 +313,10 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
                     </strong>
                   </div>
                   <div className="wb-lcd-cell">
-                    <small>月度四层口径差额</small>
-                    <strong>¥0.00 (已桥平)</strong>
+                    <small>月度净回款率 / 口径桥平</small>
+                    <strong>
+                      {Math.max(0, 100 - feePct - transitPct)}% · 差额 ¥0.00
+                    </strong>
                   </div>
                 </div>
 
@@ -330,6 +332,8 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
                   <div
                     style={{
                       display: 'flex',
+                      flexWrap: 'wrap',
+                      gap: '6px',
                       justifyContent: 'space-between',
                       fontFamily: 'var(--f-mono)',
                       fontSize: '11px',
@@ -358,13 +362,13 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
                 </div>
 
                 <div style={{ fontSize: '10.5px', color: '#71717a', fontFamily: 'var(--f-mono)' }}>
-                  * 演示用公开法定阈值与口径模型，不构成正式税务申报或鉴证意见；完整多主体联动底稿见 IMA V2.4.1。
+                  * 演示用公开法定阈值与口径模型，不构成正式税务申报或鉴证意见；完整多主体联动底稿见 IMA 知识库。
                 </div>
               </div>
             )}
           </div>
 
-          <aside className="wb-col">
+          <aside className="wb-col wb-col-right">
             <div style={{ fontSize: '10.5px', color: '#71717a', marginBottom: '10px', fontWeight: 600 }}>
               {scene.kind === 'sandbox' ? 'SANDBOX / 交互参数' : 'VERIFIED SPECS / 实盘指标'}
             </div>

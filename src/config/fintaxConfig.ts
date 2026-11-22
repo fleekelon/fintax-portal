@@ -27,9 +27,6 @@ export const LINKS = {
   wechat: 'emjj6666',
   email: '381101869@qq.com',
   author: 'Frank (fleekelon)',
-  pluginVersion: 'v0.8.4',
-  kbVersion: 'V2.4.1',
-  kbBaseline: '2026-11-21',
 };
 
 export const CHANNELS_DATA = {
@@ -71,9 +68,9 @@ export const ENGINE_SCENARIOS: EngineScenario[] = [
     formation: 'sphere',
     label: '7500万小微崖',
     enLabel: '75M CIT Cliff',
-    metric: '15万 → 80万 (+65万)',
-    summary: '4% 核定下对应 300 万所得额崖：7,500 万缴 15 万，超崖骤增至 80 万。',
-    enSummary: 'At 4% deemed profit rate, crossing 75M jumps CIT from 150k to 800k CNY.',
+    metric: '15万 → 80万 (8000万)',
+    summary: '4% 核定下对应 300 万所得额崖：7,500 万缴 15 万，超崖全额按 25% 计税（8,000 万时达 80 万）。',
+    enSummary: 'At 4% deemed profit rate, 75M owes 150k; crossing triggers flat 25% CIT (800k at 80M).',
   },
   {
     id: 'return16',
@@ -180,13 +177,13 @@ export const SITE_COPY = {
     heroWords: ['平台账单', '四层口径', '退税风险', '月结底稿'],
     heroSuffix: '。',
     heroDesc:
-      '开源离线插件 dsh-fintax v0.8.4 × 腾讯 IMA 跨境财税知识库 V2.4.1。原始账单 100% 留在本机，0.55 秒核完 5 万行对账，串联 100 本零误差联动 Excel 底稿。',
+      '开源离线插件 dsh-fintax × 腾讯 IMA 跨境财税知识库。原始账单 100% 留在本机，0.55 秒核完 5 万行对账，串联 100 本零误差联动 Excel 底稿。',
     heroCta: '安装插件 / 获取知识库',
     chapters: [
       {
         id: 'offline' as ChapterId,
         label: '离线初筛',
-        enLabel: 'dsh-fintax v0.8.4',
+        enLabel: 'dsh-fintax Offline',
         title: '离线初筛',
         subtitle: '11 通道本机离线核对，0.55 秒跑完 50,000 行账单。',
         expandedSub: '纯 ESM 零第三方依赖，原账不出电脑；三段资金链诚实标定「待核银行回单」。',
@@ -202,7 +199,7 @@ export const SITE_COPY = {
       {
         id: 'ima' as ChapterId,
         label: 'IMA 知识库',
-        enLabel: 'IMA KB V2.4.1',
+        enLabel: 'IMA Knowledge Base',
         title: 'IMA 知识库',
         subtitle: '7 模块 · 279 条内容 · 100 本零漂移联动 Excel 底稿。',
         expandedSub: '拖动下方「2026–2027 影响利润的 4 笔钱」时间轴，直击对应官方税号与底稿编号。',
@@ -216,18 +213,18 @@ export const SITE_COPY = {
         expandedSub: '免费导出零推广《月结核对单》，再按需进阶 IMA 12 篇免费橱窗与完整版 100 本母表。',
       },
     ],
-    wbBadge: '实时双引擎体验台 · 切换实机截图 / IMA 3200px 架构图 / 亲自拖动沙盘滑块算税',
+    wbBadge: '实时双引擎体验台 · 切换实机截图 / IMA 3200px 架构图 / 拖动沙盘滑块算税',
     ctaTitle: '原始账单留在本机。\n专业底稿与风控，交给我们。',
     ctaDesc:
       '免费直装开源插件跑通本月核对单，或扫码先逛 IMA 12 篇免费公开问答；11/20–12/10 同步招募 6 家跨境企业参与十月账单本地回测。',
     btnInstall: '复制安装命令',
     btnImaQr: '扫码看 IMA 公开橱窗',
     btnWechat: '复制微信 emjj6666',
-    footerLeft: 'Frank (fleekelon) · dsh-fintax v0.8.4 × IMA V2.4.1 (基线 2026-11-21)',
+    footerLeft: 'Frank (fleekelon) · dsh-fintax × 腾讯 IMA 跨境财税知识库',
     footerRight: '合规边界与离线隐私声明',
     disclaimerTitle: '合规边界与本机离线隐私声明',
     disclaimerBody:
-      '1. 数据隐私：dsh-fintax 为纯 ESM 开源插件（零第三方运行时依赖），CSV/TSV/XLSX/ZIP 原始账单 100% 留在本机内存处理，不上传服务器。\n2. 合规边界：插件输出与页面沙盘测算仅用于原始账单本机离线初筛、差额定位与待补凭证跟进，不构成正式会计凭证、税务申报依据或鉴证意见。\n3. 双轨隔离：开源插件仅包含离线排雷与确定性算税引擎；完整政策解读、100 本 V2.0 联动 Excel 底稿与私域母表托管于腾讯 IMA 知识库（V2.4.1）。',
+      '1. 数据隐私：dsh-fintax 为纯 ESM 开源插件（零第三方运行时依赖），CSV/TSV/XLSX/ZIP 原始账单 100% 留在本机内存处理，不上传服务器。\n2. 合规边界：插件输出与页面沙盘测算仅用于原始账单本机离线初筛、差额定位与待补凭证跟进，不构成正式会计凭证、税务申报依据或鉴证意见。\n3. 双轨隔离：开源插件仅包含离线排雷与确定性算税引擎；完整政策解读、100 本联动 Excel 底稿与私域母表托管于腾讯 IMA 知识库。',
   },
   en: {
     heroModeBreathe: 'Breathe',
@@ -236,13 +233,13 @@ export const SITE_COPY = {
     heroWords: ['settlements', '4-layer bridge', 'export rebates', 'month-end ledger'],
     heroSuffix: '.',
     heroDesc:
-      'Open-source offline plugin dsh-fintax v0.8.4 × Tencent IMA FinTax KB V2.4.1. Raw statements stay 100% local, reconciling 50k rows in 0.55s alongside 100 verified Excel workbooks.',
+      'Open-source offline plugin dsh-fintax × Tencent IMA FinTax KB. Raw statements stay 100% local, reconciling 50k rows in 0.55s alongside 100 verified Excel workbooks.',
     heroCta: 'Install / Explore KB',
     chapters: [
       {
         id: 'offline' as ChapterId,
         label: 'Offline Audit',
-        enLabel: 'dsh-fintax v0.8.4',
+        enLabel: 'dsh-fintax Offline',
         title: 'Offline Audit',
         subtitle: '11-channel local reconciliation: 50,000 rows in ~0.55s.',
         expandedSub: 'Zero runtime dependencies. Raw statements stay local with honest 3-stage fund boundaries.',
@@ -258,8 +255,8 @@ export const SITE_COPY = {
       {
         id: 'ima' as ChapterId,
         label: 'IMA KB',
-        enLabel: 'IMA KB V2.4.1',
-        title: 'IMA KB V2.4.1',
+        enLabel: 'IMA Knowledge Base',
+        title: 'IMA Knowledge Base',
         subtitle: '7 modules · 279 docs · 100 zero-drift linked Excel workbooks.',
         expandedSub: 'Scrub the 2026–2027 4 profit-impacting policy milestones & matching workbooks.',
       },
@@ -279,10 +276,10 @@ export const SITE_COPY = {
     btnInstall: 'Copy CLI Install',
     btnImaQr: 'IMA Public Showcase QR',
     btnWechat: 'Copy WeChat emjj6666',
-    footerLeft: 'Frank (fleekelon) · dsh-fintax v0.8.4 × IMA V2.4.1 (2026-11-21)',
+    footerLeft: 'Frank (fleekelon) · dsh-fintax × Tencent IMA FinTax KB',
     footerRight: 'Compliance & Privacy Boundary',
     disclaimerTitle: 'Compliance Boundary & Local-Only Privacy Notice',
     disclaimerBody:
-      '1. Local-Only Privacy: dsh-fintax is pure ESM with zero third-party runtime dependencies. All CSV/XLSX/ZIP statements are parsed strictly in local memory.\n2. Compliance Scope: Plugin outputs and interactive sandboxes are for preliminary offline screening, variance tracing, and evidence tracking only—not formal accounting vouchers or tax filings.\n3. Dual-Track Isolation: Open-source code ships deterministic engines only; full policy SOPs and 100 linked Excel workbooks live inside Tencent IMA KB V2.4.1.',
+      '1. Local-Only Privacy: dsh-fintax is pure ESM with zero third-party runtime dependencies. All CSV/XLSX/ZIP statements are parsed strictly in local memory.\n2. Compliance Scope: Plugin outputs and interactive sandboxes are for preliminary offline screening, variance tracing, and evidence tracking only—not formal accounting vouchers or tax filings.\n3. Dual-Track Isolation: Open-source code ships deterministic engines only; full policy SOPs and 100 linked Excel workbooks live inside Tencent IMA Knowledge Base.',
   },
 };

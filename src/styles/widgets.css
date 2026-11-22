@@ -389,11 +389,35 @@
 }
 
 @media (max-width: 720px) {
+  .wb-wrap {
+    padding: 66px 10px 18px;
+  }
+  .wb-topbar {
+    grid-template-columns: auto 1fr;
+    gap: 8px;
+    padding: 0 10px;
+  }
+  .wb-topbar-sub {
+    display: none;
+  }
+  .wb-topbar > div:last-child {
+    display: none;
+  }
   .wb-main {
     grid-template-columns: 1fr;
+    overflow-y: auto;
   }
-  .wb-col {
+  .wb-col-left {
     display: none;
+  }
+  .wb-col-right {
+    display: block;
+    border-left: 0;
+    border-top: 1px solid var(--studio-border);
+    overflow-y: visible;
+  }
+  .wb-lcd-strip {
+    grid-template-columns: 1fr;
   }
   .tier-grid,
   .scenario-grid {

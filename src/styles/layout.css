@@ -355,3 +355,49 @@
   font-weight: 500;
   box-shadow: 0 10px 32px rgba(0, 0, 0, 0.28);
 }
+
+@media (max-width: 720px) {
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    height: 60px;
+    gap: 8px;
+  }
+
+  .top-left {
+    display: none;
+  }
+
+  .top-center {
+    flex-shrink: 0;
+  }
+
+  .brand-link svg {
+    width: 108px;
+    height: auto;
+  }
+
+  .top-right {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .top-right .glass-track {
+    padding: 3px;
+  }
+
+  .top-right .glass-seg {
+    padding: 5px 8px !important;
+  }
+
+  .corner-footer {
+    left: 12px;
+    right: 12px;
+    bottom: 10px;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+}

@@ -80,6 +80,10 @@ export function App() {
   }, [theme]);
 
   useEffect(() => {
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  }, [lang]);
+
+  useEffect(() => {
     engineRef.current?.sync({ heroMode, lensExpanded, engineFormation, policyScrub: policyIdx / 3 });
   }, [heroMode, lensExpanded, engineFormation, policyIdx]);
 
@@ -295,7 +299,7 @@ export function App() {
         <div className="modal-backdrop" onClick={() => setModal(null)}>
           <div className="modal-card" onClick={(e) => e.stopPropagation()}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <strong style={{ fontSize: '15px' }}>IMA 跨境财税知识库 {LINKS.kbVersion}</strong>
+              <strong style={{ fontSize: '15px' }}>IMA 跨境财税知识库</strong>
               <button
                 type="button"
                 className="glass-btn glass-icon-btn"
