@@ -221,7 +221,7 @@ export const CircularDial = forwardRef<CircularDialHandle, CircularDialProps>(fu
                     onCopyText(
                       LINKS.cliInstall,
                       lang === 'zh'
-                        ? '已复制安装命令：dsh plugin --profile default add dsh-fintax'
+                        ? `已复制安装命令：${LINKS.cliInstall}`
                         : 'Copied CLI install command'
                     )
                   }

@@ -127,6 +127,7 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
     const cliffPct = Math.min(100, Math.round((annualWan / 7500) * 100));
     const deemedProfit = annualWan * 0.04; // 4% 核定应纳税所得额（万元）
     const estCitWan = deemedProfit <= 300 ? deemedProfit * 0.05 : deemedProfit * 0.25;
+    const overVat500 = annualWan > 500;
     const overCliff = annualWan > 7500;
 
     // Monthly 4-layer bridge demo (万元)
@@ -294,7 +295,7 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
                       color: overCliff ? '#ff7a52' : '#cbe39b',
                     }}
                   >
-                    {overCliff ? 'P0 · 触发 7,500 万崖' : annualWan >= 500 ? 'P1 · 达到一般纳税人线' : 'NORMAL · 区间内'}
+                    {overCliff ? 'P0 · 触发 7,500 万崖' : overVat500 ? 'P1 · 超过 500 万一般纳税人线' : 'NORMAL · 区间内'}
                   </span>
                 </div>
 
@@ -302,7 +303,7 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
                 <div className="wb-lcd-strip">
                   <div className="wb-lcd-cell">
                     <small>500万 一般纳税人参考</small>
-                    <strong style={{ color: annualWan >= 500 ? '#ff8b66' : '#cbe39b' }}>
+                    <strong style={{ color: overVat500 ? '#ff8b66' : '#cbe39b' }}>
                       {vatPct}% ({annualWan}万)
                     </strong>
                   </div>
