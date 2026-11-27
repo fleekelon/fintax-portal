@@ -1,4 +1,5 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react';
+import { PORTAL_METRICS } from '../config/fintaxConfig';
 
 export interface CrosshairHandle {
   updatePointer: (x: number, y: number, hMult: number, vMult: number, visible: boolean) => void;
@@ -58,7 +59,7 @@ export const CrosshairOverlay = forwardRef<CrosshairHandle>(function CrosshairOv
         <span>
           V<strong ref={vValRef}>1.43</strong>
         </span>
-        <span style={{ color: 'var(--lcd)' }}>11 CH · 0.55s</span>
+        <span style={{ color: 'var(--lcd)' }}>{PORTAL_METRICS.pluginChannels} CH · 0.55s</span>
       </div>
     </div>
   );

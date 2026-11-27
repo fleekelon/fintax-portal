@@ -13,6 +13,7 @@ import {
   LINKS,
   Lang,
   MediaItem,
+  PORTAL_METRICS,
   SITE_COPY,
   Theme,
   assetUrl,
@@ -299,7 +300,9 @@ export function App() {
         <div className="modal-backdrop" onClick={() => setModal(null)}>
           <div className="modal-card" onClick={(e) => e.stopPropagation()}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <strong style={{ fontSize: '15px' }}>IMA 跨境财税知识库</strong>
+              <strong style={{ fontSize: '15px' }}>
+                {lang === 'zh' ? 'IMA 跨境财税知识库' : 'IMA Cross-Border FinTax KB'}
+              </strong>
               <button
                 type="button"
                 className="glass-btn glass-icon-btn"
@@ -310,10 +313,15 @@ export function App() {
                 <X size={14} />
               </button>
             </div>
-            <img src={assetUrl('/media/ima_qr.png')} alt="IMA 知识库官方二维码" className="modal-qr" />
+            <img
+              src={assetUrl('/media/ima_qr.png')}
+              alt={lang === 'zh' ? 'IMA 知识库官方二维码' : 'Official Tencent IMA Knowledge Base QR Code'}
+              className="modal-qr"
+            />
             <p style={{ fontSize: '12.5px', color: 'var(--text2)', lineHeight: 1.6 }}>
-              微信 / 腾讯 IMA 扫码直达《跨境电商财税合规｜出口退税与平台数据报送》。免会员可先浏览
-              12 篇免费公开问答橱窗；完整版含 279 条内容与 100 本零漂移联动 Excel。
+              {lang === 'zh'
+                ? `微信 / 腾讯 IMA 扫码直达《跨境电商财税合规｜出口退税与平台数据报送》。免会员可先浏览 ${PORTAL_METRICS.imaFreePublicGuides} 篇免费公开问答橱窗；完整版含 ${PORTAL_METRICS.imaTotalDocs} 条内容与 ${PORTAL_METRICS.imaWorkbooks} 本零漂移联动 Excel。`
+                : `Scan via WeChat or Tencent IMA to open "Cross-Border FinTax Compliance | Export Rebates & Platform Reporting". Browse ${PORTAL_METRICS.imaFreePublicGuides} free public guides with no membership required; the full edition includes ${PORTAL_METRICS.imaTotalDocs} items and ${PORTAL_METRICS.imaWorkbooks} zero-drift linked Excel workbooks.`}
             </p>
             <button
               type="button"
@@ -321,11 +329,13 @@ export function App() {
               onClick={() =>
                 copyText(
                   LINKS.wechat,
-                  '已复制微信 emjj6666（备注：IMA对账 / IMA退税 / 十月回测）'
+                  lang === 'zh'
+                    ? '已复制微信 emjj6666（备注：IMA对账 / IMA退税 / 十月回测）'
+                    : 'Copied WeChat ID: emjj6666 (Note: IMA Audit / Rebate / Oct Backtest)'
                 )
               }
             >
-              复制主理人微信 {LINKS.wechat}
+              {lang === 'zh' ? `复制主理人微信 ${LINKS.wechat}` : `Copy Curator WeChat ${LINKS.wechat}`}
             </button>
           </div>
         </div>

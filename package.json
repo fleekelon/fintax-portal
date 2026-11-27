@@ -4,8 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "sync:metrics": "node scripts/sync-portal-metrics.mjs",
+    "check:metrics": "node scripts/sync-portal-metrics.mjs --check",
+    "dev": "node scripts/sync-portal-metrics.mjs && vite",
+    "build": "node scripts/sync-portal-metrics.mjs && tsc -b && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

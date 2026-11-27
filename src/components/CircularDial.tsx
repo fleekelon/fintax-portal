@@ -140,7 +140,7 @@ export const CircularDial = forwardRef<CircularDialHandle, CircularDialProps>(fu
               <div className="hero-badge-row">
                 <span>dsh-fintax</span>
                 <span>×</span>
-                <span>IMA 知识库</span>
+                <span>{lang === 'zh' ? 'IMA 知识库' : 'IMA Knowledge Base'}</span>
               </div>
               <h1 className="hero-title">
                 {copy.heroPrefix}

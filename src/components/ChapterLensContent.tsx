@@ -7,6 +7,7 @@ import {
   LINKS,
   Lang,
   POLICY_MILESTONES,
+  PORTAL_METRICS,
 } from '../config/fintaxConfig';
 
 interface ChapterLensContentProps {
@@ -40,15 +41,17 @@ export function ChapterLensContent({
   };
 
   if (chapterIndex === 0) {
+    const platforms = lang === 'zh' ? CHANNELS_DATA.platforms : CHANNELS_DATA.enPlatforms;
+    const wallets = lang === 'zh' ? CHANNELS_DATA.wallets : CHANNELS_DATA.enWallets;
     return (
       <div className="lens-widget-card">
         <div className="chip-grid">
-          {CHANNELS_DATA.platforms.map((p) => (
+          {platforms.map((p) => (
             <span key={p} className="ch-chip">
               {p}
             </span>
           ))}
-          {CHANNELS_DATA.wallets.map((w) => (
+          {wallets.map((w) => (
             <span key={w} className="ch-chip wallet">
               {w}
             </span>
@@ -57,16 +60,24 @@ export function ChapterLensContent({
 
         <div className="stage-rail">
           <div className="stage-box">
-            <strong>① 平台放款</strong>
-            <small>8 大平台/收单</small>
+            <strong>{lang === 'zh' ? '① 平台放款' : '① Platform Payout'}</strong>
+            <small>
+              {lang === 'zh'
+                ? `${PORTAL_METRICS.pluginPlatforms} 大平台/收单`
+                : `${PORTAL_METRICS.pluginPlatforms} Platforms / Gateways`}
+            </small>
           </div>
           <div className="stage-box">
-            <strong>② 结汇入账</strong>
-            <small>3 大通道防重</small>
+            <strong>{lang === 'zh' ? '② 结汇入账' : '② FX Settlement'}</strong>
+            <small>
+              {lang === 'zh'
+                ? `${PORTAL_METRICS.pluginWallets} 大通道防重`
+                : `${PORTAL_METRICS.pluginWallets} Wallets De-duped`}
+            </small>
           </div>
           <div className="stage-box" style={{ borderColor: 'var(--accent)' }}>
-            <strong>③ 待核回单</strong>
-            <small>pending_bank_receipt</small>
+            <strong>{lang === 'zh' ? '③ 银行回单核销' : '③ Stage 3 Receipt'}</strong>
+            <small>{lang === 'zh' ? 'Stage 3 · 5 键核销' : '5-Key Bank Match'}</small>
           </div>
         </div>
 
@@ -113,7 +124,7 @@ export function ChapterLensContent({
               }}
             >
               <span>{lang === 'zh' ? sc.label : sc.enLabel}</span>
-              <small>{sc.metric}</small>
+              <small>{lang === 'zh' ? sc.metric : sc.enMetric}</small>
             </button>
           ))}
         </div>
@@ -148,7 +159,7 @@ export function ChapterLensContent({
         <div className="policy-box">
           <div className="policy-box-title">{lang === 'zh' ? m.title : m.enTitle}</div>
           <div className="policy-box-meta">
-            {m.workbook} · {lang === 'zh' ? m.impact : m.enImpact}
+            {lang === 'zh' ? m.workbook : m.enWorkbook} · {lang === 'zh' ? m.impact : m.enImpact}
           </div>
           <div className="policy-box-desc">{lang === 'zh' ? m.detail : m.enDetail}</div>
         </div>
@@ -171,16 +182,28 @@ export function ChapterLensContent({
     <div className="lens-widget-card">
       <div className="tier-grid">
         <div className="tier-col">
-          <strong>dsh-fintax 开源插件</strong>
-          <div>MIT 开源免费 · 11 通道离线对账 · 10 引擎 · 零推广月结核对单导出</div>
+          <strong>{lang === 'zh' ? 'dsh-fintax 开源插件' : 'dsh-fintax Open-Source Plugin'}</strong>
+          <div>
+            {lang === 'zh'
+              ? `MIT 开源免费 · ${PORTAL_METRICS.pluginChannels} 通道与 Stage 3 银行回单核销 · ${PORTAL_METRICS.pluginEngines} 个引擎 · 零推广月结核对单`
+              : `MIT free & open-source · ${PORTAL_METRICS.pluginChannels}-channel & Stage 3 bank receipt audit · ${PORTAL_METRICS.pluginEngines} deterministic engines · Ad-free export`}
+          </div>
         </div>
         <div className="tier-col">
-          <strong>IMA 免费公开橱窗</strong>
-          <div>免会员可查 12 篇高频排雷问答 · 四层口径速查 · 风险应急入口</div>
+          <strong>{lang === 'zh' ? 'IMA 免费公开橱窗' : 'IMA Free Preview'}</strong>
+          <div>
+            {lang === 'zh'
+              ? `免会员可查 ${PORTAL_METRICS.imaFreePublicGuides} 篇高频排雷问答 · 四层口径速查 · 风险应急入口`
+              : `${PORTAL_METRICS.imaFreePublicGuides} free public guides (no membership needed) · 4-layer bridge quick ref · Risk response SOPs`}
+          </div>
         </div>
         <div className="tier-col highlight">
-          <strong>IMA 完整版知识库</strong>
-          <div>279 条内容 · 100 本零漂移联动 Excel（60,107 公式）· 362 税号原件</div>
+          <strong>{lang === 'zh' ? 'IMA 完整版知识库' : 'IMA Full Pro KB'}</strong>
+          <div>
+            {lang === 'zh'
+              ? `${PORTAL_METRICS.imaTotalDocs} 条内容 · ${PORTAL_METRICS.imaWorkbooks} 本零漂移联动 Excel（${PORTAL_METRICS.imaFormulas} 公式）· ${PORTAL_METRICS.imaHsCodes} 税号原件`
+              : `${PORTAL_METRICS.imaTotalDocs} items · ${PORTAL_METRICS.imaWorkbooks} zero-drift linked Excel workbooks (${PORTAL_METRICS.imaFormulas} formulas) · ${PORTAL_METRICS.imaHsCodes} verified HS codes`}
+          </div>
         </div>
       </div>
 
@@ -217,7 +240,7 @@ export function ChapterLensContent({
           }
         >
           {copiedKey === 'wx' ? <Check size={12} /> : <Copy size={12} />}
-          微信 {LINKS.wechat}
+          {lang === 'zh' ? `微信 ${LINKS.wechat}` : `WeChat ${LINKS.wechat}`}
         </button>
       </div>
     </div>

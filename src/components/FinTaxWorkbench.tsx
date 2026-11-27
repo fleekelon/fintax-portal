@@ -1,6 +1,6 @@
 import { Layers, QrCode, ShieldCheck, Sliders, Terminal } from 'lucide-react';
 import { forwardRef, useState } from 'react';
-import { Lang, SITE_COPY, assetUrl } from '../config/fintaxConfig';
+import { Lang, PORTAL_METRICS, SITE_COPY, assetUrl } from '../config/fintaxConfig';
 
 interface FinTaxWorkbenchProps {
   mounted: boolean;
@@ -9,15 +9,34 @@ interface FinTaxWorkbenchProps {
   onOpenQr: () => void;
 }
 
+interface WorkbenchMetricsItem {
+  k: string;
+  v: string;
+  enK: string;
+  enV: string;
+}
+
 interface WorkbenchScene {
   id: string;
   title: string;
   enTitle: string;
   tag: string;
+  enTag?: string;
   kind: 'sandbox' | 'image';
   img?: string;
+  caption?: string;
+  enCaption?: string;
   group: 'sandbox' | 'plugin' | 'ima';
-  metrics: { k: string; v: string }[];
+  metrics: WorkbenchMetricsItem[];
+}
+
+function fmtCnyEn(wan: number): string {
+  if (wan >= 100) {
+    const m = wan / 100;
+    return `¥${Number.isInteger(m) ? m.toFixed(0) : wan % 10 === 0 ? m.toFixed(1) : m.toFixed(2)}M`;
+  }
+  const k = wan * 10;
+  return `¥${Math.abs(k - Math.round(k)) < 0.05 ? Math.round(k) : k.toFixed(1)}k`;
 }
 
 const SCENES: WorkbenchScene[] = [
@@ -29,39 +48,58 @@ const SCENES: WorkbenchScene[] = [
     kind: 'sandbox',
     group: 'sandbox',
     metrics: [
-      { k: '算账内核', v: 'BigInt 0.01 分' },
-      { k: '5万行实测', v: '0.55 秒离线' },
-      { k: '质量门禁', v: '143 单测 / 16 红队' },
+      { k: '算账内核', v: 'BigInt 0.01 分', enK: 'Core Math', enV: 'BigInt 0.0001 CNY' },
+      { k: '5万行实测', v: '0.55 秒离线', enK: '50k-Row Bench', enV: '0.55s Local Offline' },
+      { k: '质量门禁', v: 'CI 全量单测 + 红队门禁', enK: 'Quality Gate', enV: 'Full CI Suite + Red-Team' },
     ],
   },
   {
     id: 'radar',
-    title: '11 通道离线对账雷达',
-    enTitle: '11-Channel Offline Radar',
+    title: `${PORTAL_METRICS.pluginChannels} 通道离线对账雷达`,
+    enTitle: `${PORTAL_METRICS.pluginChannels}-Channel Offline Radar`,
     tag: 'dsh-fintax',
     kind: 'image',
     img: assetUrl('/media/showcase/statement-radar.webp'),
+    caption: `界面示意图采自 v0.8.5 历史版本快照（现网插件已升级至 ${PORTAL_METRICS.pluginChannels} 大通道与 Stage 3 银行回单核销）`,
+    enCaption: `UI preview captured from v0.8.5 historical snapshot (live plugin upgraded to ${PORTAL_METRICS.pluginChannels} channels & Stage 3 bank receipt matching)`,
     group: 'plugin',
     metrics: [
-      { k: '覆盖通道', v: '8 平台 + 3 结汇' },
-      { k: '三段边界', v: '放款→入账→待核回单' },
-      { k: '防重复机制', v: 'Shopify+PayPal/Stripe' },
-      { k: '主体归档', v: 'history-v3 防串账' },
+      {
+        k: '覆盖通道',
+        v: `${PORTAL_METRICS.pluginPlatforms} 平台 + ${PORTAL_METRICS.pluginWallets} 结汇`,
+        enK: 'Channels',
+        enV: `${PORTAL_METRICS.pluginPlatforms} Platforms + ${PORTAL_METRICS.pluginWallets} Wallets`,
+      },
+      {
+        k: '三段核销',
+        v: '放款→结汇→Stage 3 回单',
+        enK: '3-Stage Audit',
+        enV: 'Payout → FX → Stage 3 Receipt',
+      },
+      { k: '防重复机制', v: 'Shopify+PayPal/Stripe', enK: 'De-duplication', enV: 'Shopify + PayPal / Stripe' },
+      { k: '主体归档', v: '多主体隔离防串账', enK: 'Entity Archive', enV: 'Multi-Entity Isolation' },
     ],
   },
   {
     id: 'engines',
-    title: '10 大确定性算税引擎',
-    enTitle: '10 Deterministic Tax Engines',
+    title: `${PORTAL_METRICS.pluginEngines} 大确定性算税引擎`,
+    enTitle: `${PORTAL_METRICS.pluginEngines} Deterministic Tax Engines`,
     tag: 'dsh-fintax',
     kind: 'image',
     img: assetUrl('/media/showcase/calc-engines.webp'),
+    caption: `界面示意图采自 v0.8.5 历史版本快照（现网插件已升级至 ${PORTAL_METRICS.pluginEngines} 大确定性算税引擎）`,
+    enCaption: `UI preview captured from v0.8.5 historical snapshot (live plugin upgraded to ${PORTAL_METRICS.pluginEngines} deterministic tax engines)`,
     group: 'plugin',
     metrics: [
-      { k: '引擎数量', v: '10 引擎 / 6 工具 / 4 技能' },
-      { k: '运行时依赖', v: '0 第三方依赖 · 纯 ESM' },
-      { k: '开源协议', v: 'MIT · 持续迭代' },
-      { k: '安装渠道', v: 'GitHub / npm / DSH 市场' },
+      {
+        k: '引擎数量',
+        v: `${PORTAL_METRICS.pluginEngines} 个引擎 / ${PORTAL_METRICS.pluginTools} 工具 / ${PORTAL_METRICS.pluginSkills} 技能`,
+        enK: 'Engine Suite',
+        enV: `${PORTAL_METRICS.pluginEngines} Engines / ${PORTAL_METRICS.pluginTools} Tools / ${PORTAL_METRICS.pluginSkills} Skills`,
+      },
+      { k: '运行时依赖', v: '0 第三方依赖 · 纯 ESM', enK: 'Runtime Deps', enV: 'Zero 3rd-Party · Pure ESM' },
+      { k: '开源协议', v: 'MIT · 持续迭代', enK: 'License', enV: 'MIT · Actively Maintained' },
+      { k: '安装渠道', v: 'GitHub / npm / DSH 市场', enK: 'Distribution', enV: 'GitHub / npm / DSH Market' },
     ],
   },
   {
@@ -73,9 +111,9 @@ const SCENES: WorkbenchScene[] = [
     img: assetUrl('/media/showcase/e2e-tax.webp'),
     group: 'plugin',
     metrics: [
-      { k: '运行环境', v: 'DSH Desktop 侧栏' },
-      { k: '无网可用', v: '免配 IMA 离线运行' },
-      { k: '导出格式', v: 'HTML/PDF/MD/CSV' },
+      { k: '运行环境', v: 'DSH Desktop 侧栏', enK: 'Environment', enV: 'DSH Desktop Sidebar' },
+      { k: '无网可用', v: '免配 IMA 离线运行', enK: 'Offline Ready', enV: 'Runs Offline w/o IMA' },
+      { k: '导出格式', v: 'HTML/PDF/MD/CSV', enK: 'Export Formats', enV: 'HTML / PDF / MD / CSV' },
     ],
   },
   {
@@ -83,14 +121,30 @@ const SCENES: WorkbenchScene[] = [
     title: 'IMA 四层口径全景图 02A',
     enTitle: 'IMA 4-Layer Bridge 02A',
     tag: 'IMA 知识库',
+    enTag: 'IMA KB',
     kind: 'image',
     img: assetUrl('/media/showcase/diagram-02a.webp'),
     group: 'ima',
     metrics: [
-      { k: '全库规模', v: '7 模块 / 279 条内容' },
-      { k: 'Excel 底稿', v: '100 本 / 482 工作表' },
-      { k: '重算验证', v: '60,107 公式 / 0 漂移' },
-      { k: '更新机制', v: '10 项政策金丝雀追踪' },
+      {
+        k: '全库规模',
+        v: `${PORTAL_METRICS.imaModules} 模块 / ${PORTAL_METRICS.imaTotalDocs} 条内容`,
+        enK: 'KB Scale',
+        enV: `${PORTAL_METRICS.imaModules} Modules / ${PORTAL_METRICS.imaTotalDocs} Items`,
+      },
+      {
+        k: 'Excel 底稿',
+        v: `${PORTAL_METRICS.imaWorkbooks} 本 / ${PORTAL_METRICS.imaWorksheets} 工作表`,
+        enK: 'Excel Workbooks',
+        enV: `${PORTAL_METRICS.imaWorkbooks} Books / ${PORTAL_METRICS.imaWorksheets} Sheets`,
+      },
+      {
+        k: '重算验证',
+        v: `${PORTAL_METRICS.imaFormulas} 公式 / 0 漂移`,
+        enK: 'Formula Audit',
+        enV: `${PORTAL_METRICS.imaFormulas} Formulas / 0 Drift`,
+      },
+      { k: '更新机制', v: '10 项政策金丝雀追踪', enK: 'Policy Watch', enV: '10 Policy Canaries' },
     ],
   },
   {
@@ -98,14 +152,25 @@ const SCENES: WorkbenchScene[] = [
     title: '出口税收待遇判断树 25A',
     enTitle: 'Export Tax Decision Tree 25A',
     tag: 'IMA 知识库',
+    enTag: 'IMA KB',
     kind: 'image',
     img: assetUrl('/media/showcase/diagram-25a.webp'),
     group: 'ima',
     metrics: [
-      { k: '官源税号', v: '362 / 362 零差异' },
-      { k: '原版 PDF', v: '财政部 2026#2 & #29' },
-      { k: '稽查铁案', v: '10 起官源案例矩阵' },
-      { k: '免费橱窗', v: '12 篇公开问答免会员' },
+      {
+        k: '官源税号',
+        v: `${PORTAL_METRICS.imaHsCodes} / ${PORTAL_METRICS.imaHsCodes} 零差异`,
+        enK: 'Verified HS Codes',
+        enV: `${PORTAL_METRICS.imaHsCodes} / ${PORTAL_METRICS.imaHsCodes} Zero-Diff`,
+      },
+      { k: '原版 PDF', v: '财政部 2026#2 & #29', enK: 'Official PDFs', enV: 'MOF Notices 2026#2 & #29' },
+      { k: '稽查铁案', v: '10 起官源案例矩阵', enK: 'Audit Cases', enV: '10 Official Audit Cases' },
+      {
+        k: '免费橱窗',
+        v: `${PORTAL_METRICS.imaFreePublicGuides} 篇公开问答免会员`,
+        enK: 'Free Showcase',
+        enV: `${PORTAL_METRICS.imaFreePublicGuides} Free Public Guides`,
+      },
     ],
   },
 ];
@@ -236,7 +301,7 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
         <div className="wb-main">
           <aside className="wb-col wb-col-left">
             <div style={{ fontSize: '10.5px', color: '#71717a', marginBottom: '8px', fontWeight: 600 }}>
-              SCENES / 实景视图
+              {lang === 'zh' ? 'SCENES / 实景视图' : 'SCENES / LIVE VIEWS'}
             </div>
             {SCENES.map((s, idx) => (
               <button
@@ -269,7 +334,14 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
 
           <div className="wb-viewport">
             {scene.kind === 'image' && scene.img ? (
-              <img src={scene.img} alt={scene.title} className="wb-img-stage" />
+              <figure className="wb-img-frame">
+                <img src={scene.img} alt={lang === 'zh' ? scene.title : scene.enTitle} className="wb-img-stage" />
+                {(lang === 'zh' ? scene.caption : scene.enCaption) && (
+                  <figcaption className="wb-img-caption">
+                    {lang === 'zh' ? scene.caption : scene.enCaption}
+                  </figcaption>
+                )}
+              </figure>
             ) : (
               <div className="wb-sandbox">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -295,28 +367,38 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
                       color: overCliff ? '#ff7a52' : '#cbe39b',
                     }}
                   >
-                    {overCliff ? 'P0 · 触发 7,500 万崖' : overVat500 ? 'P1 · 超过 500 万一般纳税人线' : 'NORMAL · 区间内'}
+                    {overCliff
+                      ? lang === 'zh'
+                        ? 'P0 · 触发 7,500 万崖'
+                        : 'P0 · Over ¥75M CIT Cliff'
+                      : overVat500
+                        ? lang === 'zh'
+                          ? 'P1 · 超过 500 万一般纳税人线'
+                          : 'P1 · Over ¥5M VAT Line'
+                        : lang === 'zh'
+                          ? 'NORMAL · 区间内'
+                          : 'NORMAL · Within Threshold'}
                   </span>
                 </div>
 
                 {/* Olive-Green Braun LCD Readouts */}
                 <div className="wb-lcd-strip">
                   <div className="wb-lcd-cell">
-                    <small>500万 一般纳税人参考</small>
+                    <small>{lang === 'zh' ? '500万 一般纳税人参考' : '¥5M General VAT Ref'}</small>
                     <strong style={{ color: overVat500 ? '#ff8b66' : '#cbe39b' }}>
-                      {vatPct}% ({annualWan}万)
+                      {vatPct}% ({lang === 'zh' ? `${annualWan}万` : fmtCnyEn(annualWan)})
                     </strong>
                   </div>
                   <div className="wb-lcd-cell">
-                    <small>7,500万 4%核定小微崖</small>
+                    <small>{lang === 'zh' ? '7,500万 4%核定小微崖' : '¥75M 4% CIT Cliff'}</small>
                     <strong style={{ color: overCliff ? '#ff8b66' : '#cbe39b' }}>
-                      {cliffPct}% · 税 {estCitWan.toFixed(1)}万
+                      {cliffPct}% · {lang === 'zh' ? `税 ${estCitWan.toFixed(1)}万` : `Tax ${fmtCnyEn(estCitWan)}`}
                     </strong>
                   </div>
                   <div className="wb-lcd-cell">
-                    <small>月度净回款率 / 口径桥平</small>
+                    <small>{lang === 'zh' ? '月度净回款率 / 口径桥平' : 'Net Payout / Reconciled'}</small>
                     <strong>
-                      {Math.max(0, 100 - feePct - transitPct)}% · 差额 ¥0.00
+                      {Math.max(0, 100 - feePct - transitPct)}% · {lang === 'zh' ? '差额 ¥0.00' : 'Diff ¥0.00'}
                     </strong>
                   </div>
                 </div>
@@ -342,10 +424,18 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
                       marginBottom: '8px',
                     }}
                   >
-                    <span>月均报送 ¥{monthlyReport.toFixed(1)}万</span>
-                    <span>− 扣费 ¥{feeAmt.toFixed(1)}万</span>
-                    <span>− 在途 ¥{transitAmt.toFixed(1)}万</span>
-                    <span style={{ color: '#cbe39b' }}>= 实收 ¥{bankNet.toFixed(1)}万</span>
+                    <span>
+                      {lang === 'zh'
+                        ? `月均报送 ¥${monthlyReport.toFixed(1)}万`
+                        : `Monthly Report ${fmtCnyEn(monthlyReport)}`}
+                    </span>
+                    <span>{lang === 'zh' ? `− 扣费 ¥${feeAmt.toFixed(1)}万` : `− Fees ${fmtCnyEn(feeAmt)}`}</span>
+                    <span>
+                      {lang === 'zh' ? `− 在途 ¥${transitAmt.toFixed(1)}万` : `− In-Transit ${fmtCnyEn(transitAmt)}`}
+                    </span>
+                    <span style={{ color: '#cbe39b' }}>
+                      {lang === 'zh' ? `= 实收 ¥${bankNet.toFixed(1)}万` : `= Bank Net ${fmtCnyEn(bankNet)}`}
+                    </span>
                   </div>
                   <div
                     style={{
@@ -363,7 +453,9 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
                 </div>
 
                 <div style={{ fontSize: '10.5px', color: '#71717a', fontFamily: 'var(--f-mono)' }}>
-                  * 演示用公开法定阈值与口径模型，不构成正式税务申报或鉴证意见；完整多主体联动底稿见 IMA 知识库。
+                  {lang === 'zh'
+                    ? '* 演示用公开法定阈值与口径模型，不构成正式税务申报或鉴证意见；完整多主体联动底稿见 IMA 知识库。'
+                    : '* Illustrative statutory thresholds & 4-layer model only; not formal tax or audit advice. Full multi-entity workbooks in IMA KB.'}
                 </div>
               </div>
             )}
@@ -371,15 +463,23 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
 
           <aside className="wb-col wb-col-right">
             <div style={{ fontSize: '10.5px', color: '#71717a', marginBottom: '10px', fontWeight: 600 }}>
-              {scene.kind === 'sandbox' ? 'SANDBOX / 交互参数' : 'VERIFIED SPECS / 实盘指标'}
+              {scene.kind === 'sandbox'
+                ? lang === 'zh'
+                  ? 'SANDBOX / 交互参数'
+                  : 'SANDBOX / PARAMETERS'
+                : lang === 'zh'
+                  ? 'VERIFIED SPECS / 实盘指标'
+                  : 'VERIFIED SPECS'}
             </div>
 
             {scene.kind === 'sandbox' ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <label style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                   <span style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11.5px', color: '#a1a1aa' }}>
-                    <span>年化营收规模</span>
-                    <strong style={{ fontFamily: 'var(--f-mono)', color: '#fafafa' }}>{annualWan} 万</strong>
+                    <span>{lang === 'zh' ? '年化营收规模' : 'Annual Revenue'}</span>
+                    <strong style={{ fontFamily: 'var(--f-mono)', color: '#fafafa' }}>
+                      {lang === 'zh' ? `${annualWan} 万` : fmtCnyEn(annualWan)}
+                    </strong>
                   </span>
                   <input
                     type="range"
@@ -394,7 +494,7 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
 
                 <label style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                   <span style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11.5px', color: '#a1a1aa' }}>
-                    <span>平台佣金/广告扣费</span>
+                    <span>{lang === 'zh' ? '平台佣金/广告扣费' : 'Platform & Ad Fees'}</span>
                     <strong style={{ fontFamily: 'var(--f-mono)', color: '#fafafa' }}>{feePct}%</strong>
                   </span>
                   <input
@@ -409,7 +509,7 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
 
                 <label style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                   <span style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11.5px', color: '#a1a1aa' }}>
-                    <span>跨月在途资金占比</span>
+                    <span>{lang === 'zh' ? '跨月在途资金占比' : 'Cross-Month In-Transit'}</span>
                     <strong style={{ fontFamily: 'var(--f-mono)', color: '#fafafa' }}>{transitPct}%</strong>
                   </span>
                   <input
@@ -439,7 +539,7 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
                         cursor: 'pointer',
                       }}
                     >
-                      {preset}万
+                      {lang === 'zh' ? `${preset}万` : fmtCnyEn(preset)}
                     </button>
                   ))}
                 </div>
@@ -456,9 +556,9 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
                       border: '1px solid rgba(255,255,255,0.07)',
                     }}
                   >
-                    <div style={{ fontSize: '10.5px', color: '#8e8e98' }}>{m.k}</div>
+                    <div style={{ fontSize: '10.5px', color: '#8e8e98' }}>{lang === 'zh' ? m.k : m.enK}</div>
                     <div style={{ fontFamily: 'var(--f-mono)', fontSize: '12px', color: '#f4f4f5', marginTop: '2px' }}>
-                      {m.v}
+                      {lang === 'zh' ? m.v : m.enV}
                     </div>
                   </div>
                 ))}
@@ -476,7 +576,7 @@ export const FinTaxWorkbench = forwardRef<HTMLElement, FinTaxWorkbenchProps>(
               onClick={() => setSceneIdx(idx)}
             >
               <span>{lang === 'zh' ? s.title : s.enTitle}</span>
-              <small>{s.tag}</small>
+              <small>{lang === 'zh' ? s.tag : (s.enTag ?? s.tag)}</small>
             </button>
           ))}
         </div>
