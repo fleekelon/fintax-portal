@@ -1,20 +1,26 @@
-# FINTAX Portal — `dsh-fintax` × `IMA 跨境财税知识库`
+# FINTAX Portal — `dsh-fintax` 交互式演示与文档门户
 
-> 🌐 **线上正式官网**：https://fleekelon.github.io/fintax-portal/  
-> 📦 **门户源码仓库**：https://github.com/fleekelon/fintax-portal  
-> 🧩 **配套插件仓库**：https://github.com/fleekelon/dsh-fintax
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![DSH Plugin](https://img.shields.io/badge/Plugin-dsh--fintax-4fc3f7)](https://github.com/fleekelon/dsh-fintax)
 
-专为中国跨境电商财税双轨生态打造的 **WebGL2 3D 空间精密仪表风官网**，独立存放于 `fintax-portal/`（保留 `forma-studio/` 通用模板不变）。
+> 🌐 **在线交互演示**：https://fleekelon.github.io/fintax-portal/  
+> 🧩 **核心插件仓库**：https://github.com/fleekelon/dsh-fintax  
+> 📦 **npm 包地址**：https://www.npmjs.com/package/dsh-fintax
 
-## 核心结构
-- **全屏 WebGL2 64 格实景矩阵**：精选 48 张真实产品截图、IMA `3200px` 架构图、财政部公告原件扫描、小红书 `v0.8.3` 精密卡片与 `ep7/ep8/ep15–ep18` 电影静帧。
-- **真实光学折射 120 刻度圆盘**：串联 4 大核心章节（离线初筛 → 算税引擎 → IMA 知识库 → 双轨闭环），点击 `+` 即可在圆盘内交互体验 11 通道清单、6 大场景实时 3D 阵型变形、2026–2027 影响利润的 4 笔钱时间轴及三阶交付对比。
-- **第 5 屏交互式 FinTax 双引擎工作台**：直接拖动滑块试算 **500 万一般纳税人警戒线 / 7,500 万核定小微崖（15 万 → 80 万）** 与 **月度四层口径差额桥接**，并可切换高清实机截图与 `02A / 25A` 全景图。
-- **第 6 屏三轨转化收口**：一键复制 `dsh plugin --profile desktop add dsh-fintax`、扫码直达 IMA 官方公开橱窗（内置 `ima_qr.png`）、一键复制主理人微信 `emjj6666`，附独立《合规边界与离线隐私声明》弹窗。
+面向开源插件 [`dsh-fintax`](https://github.com/fleekelon/dsh-fintax)（DeepSeek Harness 跨境财税工作台）的 **WebGL2 3D 空间精密仪表风交互门户**，使用 Vite + TypeScript + React 构建并部署于 GitHub Pages。
 
-## 本地启动
-```powershell
+## 核心模块
+- **全屏 WebGL2 64 格实景矩阵**：实时展示插件工作台截图、系统架构图与政策对照卡片。
+- **光学折射 120 刻度交互圆盘**：串联离线账单初筛、确定性算税引擎、知识库引证与双轨核对流程，支持实时 3D 阵型切换与时间轴浏览。
+- **交互式 FinTax 试算预览台**：直接在浏览器中拖动参数体验一般纳税人 500 万阈值、核定小微临界点与月度四层口径差额桥接。
+- **插件安装指引与隐私声明**：提供 `dsh plugin --profile desktop add dsh-fintax` 一键复制命令与独立《合规边界与离线隐私声明》说明。
+
+## 本地运行
+```bash
 npm install
 npm run dev
 ```
 默认监听 `http://127.0.0.1:5174/`。
+
+## 开源协议
+本项目采用 [MIT License](LICENSE) 开源。
